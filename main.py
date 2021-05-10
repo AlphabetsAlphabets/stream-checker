@@ -1,11 +1,16 @@
 import requests
 import json
 
-with open("token.json") as f:
-    json = json.load(f)
+try:
+    with open("token.json") as f:
+        json = json.load(f)
+        client_id = json["client_id"]
+        client_secret = json["client_secret"]
+except FileNotFoundError:
+    import os
+    client_secret = os.environ["CLIENT_SECRET"]
+    client_id = os.environ["CLIENT_ID"]
 
-client_id = json["client_id"]
-client_secret = json["client_secret"]
 
 def check_status():
     uri = "https://api.twitch.tv/helix/search/channels?query=a_seagull"
@@ -29,11 +34,4 @@ params = {
 
 r = requests.get(uri, params=params)
 print(r.url)
-
-"""
-https://www.twitch.tv/login?client_id=eop2kevuqig0drrnj9qoknsu9964a0&redirect_param
-s=client_id%3Deop2kevuqig0drrnj9qoknsu9964a0%26redirect_uri%3Dhttps%253A%252F%252Fy
-jh_result.com%26response_type%3Dtoken%2Bid_token%26scope%3Duser%253Aread%253Afollow
-s
-"""
 
