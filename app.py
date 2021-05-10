@@ -6,4 +6,4 @@ app = Flask(__name__)
 def hello():
     return "Hello world!"
 
-app.run()
+app.run(host="localhost")
