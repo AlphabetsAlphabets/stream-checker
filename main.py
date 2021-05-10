@@ -32,6 +32,6 @@ params = {
         "scope": "user:read:follows"
         }
 
-r = requests.get(uri, params=params)
-print(r.url)
+# r = requests.get(uri, params=params)
+# print(r.url)
 
